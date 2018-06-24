@@ -1,0 +1,111 @@
+package xyz.carosdrean.projects.medidors.fragments
+
+
+import android.os.Bundle
+import android.os.SystemClock
+import android.support.v4.app.Fragment
+import android.support.v7.app.AlertDialog
+import android.support.v7.widget.SwitchCompat
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import com.bumptech.glide.Glide
+import kotlinx.android.synthetic.main.alert_tiempo.view.*
+import kotlinx.android.synthetic.main.fragment_inicio.view.*
+
+import xyz.carosdrean.projects.medidors.R
+import xyz.carosdrean.projects.medidors.pojo.Acciones
+import xyz.carosdrean.projects.medidors.presenter.Auxiliar
+import xyz.carosdrean.projects.medidors.presenter.DataGrafico
+import xyz.carosdrean.projects.medidors.presenter.RegistroAcciones
+
+
+class Inicio : Fragment() {
+
+    var pojo: Acciones? = null
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
+                              savedInstanceState: Bundle?): View? {
+        // Inflate the layout for this fragment
+        val v = inflater.inflate(R.layout.fragment_inicio, container, false)
+        swichs(v.switchOrar, 1, v)
+        swichs(v.switchLeer, 2, v)
+
+        v.ver_registro.setOnClickListener { verRegistro() }
+        v.agregar_frase.setOnClickListener { agregarFrase() }
+        v.card_agregar.setOnClickListener { verFrases() }
+
+        Glide.with(context!!).load(R.drawable.portada).into(v.ic_portada)
+        Glide.with(context!!).load(R.drawable.ic_frases).into(v.ic_frases)
+        Glide.with(context!!).load(R.drawable.ic_balanza).into(v.ic_comenzar)
+        Glide.with(context!!).load(R.drawable.ic_estadisticas).into(v.ic_estadistica)
+
+        graficos(v)
+
+        return v
+    }
+
+    private fun swichs(accion: SwitchCompat, posicion: Int, v: View){
+        accion.setOnCheckedChangeListener { compoundButton, b ->
+            if(b)alertTiempo(accion, posicion, v)
+        }
+    }
+
+    private fun alertTiempo(accion: SwitchCompat, posicion: Int, view: View){
+        val aux = Auxiliar()
+        val registrarAcciones = RegistroAcciones(context!!)
+        val tiempoCero = "00:00:00"
+        val builder: AlertDialog.Builder = AlertDialog.Builder(context!!)
+        val inflater: LayoutInflater = activity!!.layoutInflater
+        val v: View = inflater.inflate(R.layout.alert_tiempo, null)
+        builder.setView(v).setCancelable(false)
+        val alert = builder.create()
+        val apagar: SwitchCompat = v.switchTerminar
+
+        val cronometro = v.cronometro
+        cronometro.base = SystemClock.elapsedRealtime()
+        cronometro.start()
+
+        apagar.isChecked = true
+        apagar.setOnCheckedChangeListener { compoundButton, b ->
+            if(!b){
+                cronometro.stop()
+                alert.dismiss()
+                accion.isChecked = false
+                var hora = cronometro.text.toString()
+                if(hora.length == 5)hora = "00:$hora"
+                if(hora.length == 7)hora = "0$hora"
+                pojo = when(posicion){
+                    1 ->{
+                        Acciones(aux.obtenerFecha(), hora, tiempoCero)
+                    }
+                    else -> Acciones(aux.obtenerFecha(), tiempoCero, hora)
+                }
+                registrarAcciones.ingresarRegistros(pojo!!)
+
+                graficos(view)
+            }
+        }
+        alert.show()
+    }
+
+    fun graficos(v: View){
+        val data = DataGrafico(context!!)
+        data.dataGrafico(v.graph)
+    }
+
+    fun verRegistro(){
+        activity!!.supportFragmentManager.beginTransaction().replace(R.id.content, Registros()).commit()
+    }
+
+    fun verFrases(){
+
+    }
+
+    fun agregarFrase(){
+        val agregar = AgregarFrase()
+        agregar.show(fragmentManager, "Agregar Frase")
+    }
+
+
+}

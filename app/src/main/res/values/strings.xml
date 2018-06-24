@@ -1,0 +1,43 @@
+<resources>
+    <string name="app_name">Medidor</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+
+    <string name="title_registros">Registros</string>
+    <string name="title_inicio">Inicio</string>
+    <string name="title_frases">Frases</string>
+    <string name="frase_prueba">A la verdad el espiritu esta dispuesto, pero la carne es debil.</string>
+
+    <string name="orar">Comenzar a orar:</string>
+    <string name="leer">Comenzar lectura biblica:</string>
+    <string name="tiempo">Tiempo contando</string>
+    <string name="horaInicial">00:00:00</string>
+    <string name="tiempoOrar">Tiempo orado:</string>
+    <string name="tiempoLeer">Tiempo de lectura:</string>
+    <string name="title_comenzar">Comenzar</string>
+    <string name="title_estadistica">Estadisticas de la semana</string>
+    <string name="title_como_voy">Como voy</string>
+    <string name="title_registros_dia">Registro dia</string>
+    <string name="tiempo_orar">Tiempo orado:</string>
+    <string name="tiempo_leer">Tiempo lectura biblica:</string>
+    <string name="title_resgistro_mes">Registro del mes</string>
+
+    <string name="muy_rojo">Que pasa no has orado nada hoy,
+        recuerda que el poder del cristiano está en la oración,
+        ¡Ora y vencerás, ora y las cosas saldrán mejor, mucho mejor!</string>
+    <string name="rojo">Has orado, pero has orado muy poco, necesitas más, necesitas fortalecerte,
+        ora, Dios te ayudará en todo lo que hagas.</string>
+    <string name="amarillo">Bien estás orando, pero si quieres llevar una vida triunfal aún tienes que orar un poco más,
+        haslo verás una buena diferencia.</string>
+    <string name="verde">Muy bien estás orando un tiempo apropiado, sigue así, sigue adelante, Dios va contigo.</string>
+    <string name="agregar_frase">Guardar</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_acercade">Acerca de</string>
+    <string name="title_descripcion">Descripcion</string>
+    <string name="descripcion">Haga registros del tiempo que ora y lee la bibli durante el dia y el medidor espiritual le mostrar como van
+    sus estadisticas durante la semana y podra consultar todos sus registros a traves del calendario.</string>
+    <string name="acercade">Medidor Espiritual fue creado con el objetivo de que pueda ver como va en su vida espiritual y pueda mejorar, esperamos sea de bendicion para su vida.</string>
+</resources>
