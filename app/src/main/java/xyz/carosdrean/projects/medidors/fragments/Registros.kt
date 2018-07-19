@@ -116,7 +116,7 @@ class Registros : Fragment() {
             val minuto = Integer.parseInt(tiempo.substring(3, 5))
 
             when {
-                hora > 1 -> {
+                hora >= 1 -> {
                     textoSituacion = getString(R.string.verde)
                     imagen = R.drawable.verde
                 }

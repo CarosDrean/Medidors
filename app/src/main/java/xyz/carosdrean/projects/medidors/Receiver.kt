@@ -70,7 +70,7 @@ class Receiver: BroadcastReceiver() {
             val minuto = Integer.parseInt(tiempo.substring(3, 5))
 
             when {
-                hora > 1 -> contexto.getString(R.string.verde)
+                hora >= 1 -> contexto.getString(R.string.verde)
                 minuto > 30 -> contexto.getString(R.string.amarillo)
                 else -> contexto.getString(R.string.rojo)
             }
