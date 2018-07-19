@@ -8,6 +8,7 @@ import android.support.v4.content.ContextCompat
 import android.support.v4.graphics.drawable.DrawableCompat
 import android.view.*
 import android.widget.EditText
+import android.widget.Toast
 import kotlinx.android.synthetic.main.fragment_agregar_frase.view.*
 
 import xyz.carosdrean.projects.medidors.R
@@ -44,6 +45,7 @@ class AgregarFrase : BottomSheetDialogFragment() {
     }
 
     fun guardarFrase(dato: String){
+        Toast.makeText(context, "¡Aun no disponible!", Toast.LENGTH_LONG).show()
         /*val referencia = FirebaseDatabase.getInstance().reference
         val key = referencia.push().key
         referencia.child("frases").child(key).setValue(dato)*/
