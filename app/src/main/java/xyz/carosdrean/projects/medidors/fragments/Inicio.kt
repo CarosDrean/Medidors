@@ -1,6 +1,7 @@
 package xyz.carosdrean.projects.medidors.fragments
 
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.SystemClock
 import android.support.v4.app.Fragment
@@ -9,12 +10,17 @@ import android.support.v7.widget.SwitchCompat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.bumptech.glide.Glide
+import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.alert_tiempo.view.*
+import kotlinx.android.synthetic.main.fragment_inicio.*
 import kotlinx.android.synthetic.main.fragment_inicio.view.*
+import xyz.carosdrean.projects.medidors.Frases
 
 import xyz.carosdrean.projects.medidors.R
 import xyz.carosdrean.projects.medidors.pojo.Acciones
+import xyz.carosdrean.projects.medidors.pojo.Frase
 import xyz.carosdrean.projects.medidors.presenter.Auxiliar
 import xyz.carosdrean.projects.medidors.presenter.DataGrafico
 import xyz.carosdrean.projects.medidors.presenter.RegistroAcciones
@@ -42,6 +48,8 @@ class Inicio : Fragment() {
 
         graficos(v)
 
+        fraseInicial(v)
+
         return v
     }
 
@@ -49,6 +57,32 @@ class Inicio : Fragment() {
         accion.setOnCheckedChangeListener { compoundButton, b ->
             if(b)alertTiempo(accion, posicion, v)
         }
+    }
+
+    private fun fraseInicial(v: View) {
+        val referencia = FirebaseDatabase.getInstance().reference.child("frases").limitToLast(1)
+        val frasePrincipal = v.frase_principal
+        referencia.addChildEventListener(object : ChildEventListener {
+            override fun onChildMoved(p0: DataSnapshot, p1: String?) {
+            }
+
+            override fun onChildChanged(p0: DataSnapshot, p1: String?) {
+            }
+
+            override fun onChildAdded(p0: DataSnapshot, p1: String?) {
+                val frase = Frase(p0.child("texto").value.toString(), p0.child("id").value.toString())
+                if(frase.id != null) {
+                    frasePrincipal.text = frase.texto
+                }
+            }
+
+            override fun onChildRemoved(p0: DataSnapshot) {
+            }
+
+            override fun onCancelled(p0: DatabaseError) {
+            }
+
+        })
     }
 
     private fun alertTiempo(accion: SwitchCompat, posicion: Int, view: View){
@@ -99,7 +133,8 @@ class Inicio : Fragment() {
     }
 
     fun verFrases(){
-
+        val i = Intent(context, Frases::class.java)
+        startActivity(i)
     }
 
     fun agregarFrase(){

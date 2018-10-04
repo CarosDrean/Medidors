@@ -3,15 +3,16 @@ package xyz.carosdrean.projects.medidors.fragments
 
 import android.os.Bundle
 import android.support.design.widget.BottomSheetDialogFragment
-import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
 import android.support.v4.graphics.drawable.DrawableCompat
 import android.view.*
 import android.widget.EditText
 import android.widget.Toast
+import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.fragment_agregar_frase.view.*
 
 import xyz.carosdrean.projects.medidors.R
+import xyz.carosdrean.projects.medidors.pojo.Frase
 
 class AgregarFrase : BottomSheetDialogFragment() {
 
@@ -45,10 +46,11 @@ class AgregarFrase : BottomSheetDialogFragment() {
     }
 
     fun guardarFrase(dato: String){
-        Toast.makeText(context, "¡Aun no disponible!", Toast.LENGTH_LONG).show()
-        /*val referencia = FirebaseDatabase.getInstance().reference
+        Toast.makeText(context, "¡Guardando frase!", Toast.LENGTH_LONG).show()
+        val referencia = FirebaseDatabase.getInstance().reference
         val key = referencia.push().key
-        referencia.child("frases").child(key).setValue(dato)*/
+        val frase = Frase(dato, key)
+        referencia.child("frases").child(key!!).setValue(frase)
     }
 
 

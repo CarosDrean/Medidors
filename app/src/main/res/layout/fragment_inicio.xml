@@ -61,6 +61,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:id="@+id/frase_principal"
                         android:text="@string/frase_prueba"
                         android:layout_marginBottom="15dp"
                         android:textColor="@color/negroClaro"
