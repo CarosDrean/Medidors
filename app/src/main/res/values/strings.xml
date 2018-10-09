@@ -40,4 +40,6 @@
     <string name="descripcion">Haga registros del tiempo que ora y lee la bibli durante el dia y el medidor espiritual le mostrar como van
     sus estadisticas durante la semana y podra consultar todos sus registros a traves del calendario.</string>
     <string name="acercade">Medidor Espiritual fue creado con el objetivo de que pueda ver como va en su vida espiritual y pueda mejorar, esperamos sea de bendicion para su vida.</string>
+    <string name="title_alarma">Alarmas</string>
+    <string name="title_notificacion">Notificaciones</string>
 </resources>

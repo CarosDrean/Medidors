@@ -21,7 +21,12 @@ class Receiver: BroadcastReceiver() {
         val hora = String.format("%02d", calendario.get(Calendar.HOUR_OF_DAY))
         val min = String.format("%02d", calendario.get(Calendar.MINUTE))
         val horaSistema = "$hora:$min"
-        if (horaSistema == "16:00" || horaSistema == "23:00") {
+
+        val sp = context.getSharedPreferences("config", Context.MODE_PRIVATE)
+        val notUno = sp.getString("notificacion uno", "25:00")
+        val notDos = sp.getString("notificacion dos", "25:00")
+
+        if (horaSistema == notUno || horaSistema == notDos) {
             notification(context, actualizarHoy(context))
         }
     }

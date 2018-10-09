@@ -1,7 +1,9 @@
 package xyz.carosdrean.projects.medidors.fragments
 
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.os.SystemClock
 import android.support.v4.app.Fragment
@@ -12,6 +14,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.model.Model
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.alert_tiempo.view.*
 import kotlinx.android.synthetic.main.fragment_inicio.*
